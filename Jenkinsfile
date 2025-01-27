@@ -1,10 +1,25 @@
 pipeline {
     agent any
 
+    parameters {
+        string(name: 'branch', defaultValue: 'main', description: 'The branch you want ot check in')
+    }
     stages {
         stage ('Checkout') {
             steps {
-                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/smore566/jenkinstest.git']])
+                script {
+                    checkout scmGit(
+                        branches: [[name: "**/${params.branch}"]], extensions: [
+                                                    [$class: 'CloneOption'],
+                                                    [$class: 'CleanBeforeCheckout']
+                        ],
+                        userRemoteConfigs: [
+                            [
+                                url: 'https://github.com/smore566/jenkinstest.git'
+                            ]
+                        ]
+                    )
+                }
             }
         }
     }
