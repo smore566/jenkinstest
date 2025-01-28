@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label 'run-on-jenkins-master-do-not-use-without-very-good-reason'
+    }
     stages {
         stage ('Hello') {
             steps {
