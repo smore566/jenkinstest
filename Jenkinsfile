@@ -3,9 +3,9 @@ pipeline {
         label 'run-on-jenkins-master-do-not-use-without-very-good-reason'
     }
     stages {
-        stage ('Goodbye') {
+        stage ('Different') {
             steps {
-                echo 'Goodbye World'
+                echo 'Different'
             }
         }
         stage ('Build') {
